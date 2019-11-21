@@ -1,0 +1,32 @@
+{
+  "variables":
+    {
+      "version": "1908",
+      "iso_url": "https://sourceforge.net/projects/nethserver/files/nethserver-7.7.1908-x86_64.iso/download",
+      "iso_checkmsum": "6466e4896586530f9d2138b35c5502a2bd73abad"
+    },
+  "builders":
+    [
+      {
+	"vm_name": "Nethserver-7-x86_64-DigitalOcean-{{user `version`}}.qcow2",
+        "boot_wait": "5s",
+        "disk_size": "10240",
+	"qemuargs": [[ "-m", "1024M" ]],
+        "headless": false,
+        "iso_checksum": "{{user `iso_checkmsum`}}",
+        "iso_checksum_type": "sha1",
+        "iso_url": "{{user `iso_url`}}",
+	"shutdown_timeout": "1h",
+        "accelerator": "kvm",
+        "type": "qemu",
+	"headless": false,
+	"communicator": "none",
+	"qemuargs": 
+          [[ "-m", "1024m" ]],
+	"http_directory": "ks",
+	"boot_command": [
+          "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/unattended<enter><wait>"
+	]
+      }
+    ]
+}
