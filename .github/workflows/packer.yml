@@ -1,0 +1,43 @@
+name: Generate netserver image
+
+on:
+  push:
+    tags:
+      - ns-*
+      - nsent-*
+
+jobs:
+  generate-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install packer.io
+        run: | 
+          wget https://releases.hashicorp.com/packer/1.5.4/packer_1.5.4_linux_amd64.zip -O packer.zip
+          unzip packer.zip
+      - name: Create Nethserver image
+        run: ./packer build nethserver.json
+        if: startsWith( github.ref, "ns-")
+      - name: Create Nethserver Enterprise image
+        run: ./packer build nethserver-enterprise.json
+        if: startsWith( github.ref, "nsent-")
+      - name: Find image name
+        id: netserver_image
+        run: echo ::set-output name=name::$(./output_qemu/)
+      - name: Create Releas
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+      - name: Upload image
+        id: upload-image
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output_qemu/${{ steps.nethserver_image.outputs.name }}
+          asset_name: ${{ steps.nethserver_image.outputs.name }}
+          asset_content_type: application/octet-stream
