@@ -8,18 +8,17 @@
   "builders":
     [
       {
-	"vm_name": "Nethserver-7-x86_64-DigitalOcean-{{user `version`}}.qcow2",
+	"vm_name": "nethserver-7.7.{{user `version`}}.qcow2",
         "boot_wait": "5s",
         "disk_size": "10240",
-	"qemuargs": [[ "-m", "1024M" ]],
-        "headless": false,
+        "headless": true,
         "iso_checksum": "{{user `iso_checkmsum`}}",
         "iso_checksum_type": "sha1",
         "iso_url": "{{user `iso_url`}}",
 	"shutdown_timeout": "1h",
         "accelerator": "kvm",
+	"disk_compression": true,
         "type": "qemu",
-	"headless": false,
 	"communicator": "none",
 	"qemuargs": 
           [[ "-m", "1024m" ]],
