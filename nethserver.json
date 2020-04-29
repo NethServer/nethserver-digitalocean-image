@@ -1,14 +1,14 @@
 {
   "variables":
     {
-      "version": "1908",
-      "iso_url": "https://sourceforge.net/projects/nethserver/files/nethserver-7.7.1908-x86_64.iso/download",
-      "iso_checkmsum": "6466e4896586530f9d2138b35c5502a2bd73abad"
+      "version": "2003",
+      "iso_url": "https://sourceforge.net/projects/nethserver/files/nethserver-7.8.2003-x86_64.iso/download",
+      "iso_checkmsum": "7cbc39d1d97ebdbb943520e666257882a398765f"
     },
   "builders":
     [
       {
-	"vm_name": "nethserver-7.7.{{user `version`}}.qcow2",
+	"vm_name": "nethserver-7.8.{{user `version`}}.qcow2",
         "boot_wait": "5s",
         "disk_size": "10240",
         "headless": true,
