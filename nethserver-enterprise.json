@@ -1,14 +1,14 @@
 {
   "variables":
     {
-      "version": "1908",
-      "iso_url": "http://5d914b67bdb4eeb957d0-66e3589a64c1b49316460c27c219b621.r93.cf3.rackcdn.com/nethserver-enterprise-7.7.1908-x86_64.iso",
-      "iso_checkmsum": "c35abd744322250745920914bd2ead0e3f4af293"
+      "version": "2003",
+      "iso_url": "http://5d914b67bdb4eeb957d0-66e3589a64c1b49316460c27c219b621.r93.cf3.rackcdn.com/nethserver-enterprise-7.8.2003-x86_64.iso",
+      "iso_checkmsum": "60b6dc15188c84b0e9f617deb1a5f9eb44608440"
     },
   "builders":
     [
       {
-	"vm_name": "nethserver-enterprise-7.7.{{user `version`}}.qcow2",
+	"vm_name": "nethserver-enterprise-7.8.{{user `version`}}.qcow2",
         "boot_wait": "5s",
         "disk_size": "10240",
         "headless": true,
