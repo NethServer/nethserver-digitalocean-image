@@ -13,7 +13,6 @@
         "disk_size": "10240",
         "headless": true,
         "iso_checksum": "{{user `iso_checkmsum`}}",
-        "iso_checksum_type": "sha1",
         "iso_url": "{{user `iso_url`}}",
 	"shutdown_timeout": "1h",
         "accelerator": "kvm",
